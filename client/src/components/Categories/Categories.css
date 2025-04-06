@@ -1,0 +1,21 @@
+.category-card {
+  height: 400px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 5px;
+  border: none;
+  padding: 0;
+}
+
+.category-img {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(70%);
+}
+.category-card:hover .overlay-bg {
+  background: rgba(0, 0, 0, 0.6);
+}

@@ -1,0 +1,16 @@
+.slider-img {
+    height: 750px;
+    object-fit: cover;
+    padding: 5px;
+}
+  
+  @media (max-width: 768px) {
+    .slider-caption {
+      font-size: 0.9rem;
+      bottom: 20px;
+    }
+    .slider-caption h5 {
+      font-size: 1.1rem;
+    }
+  }
+  
