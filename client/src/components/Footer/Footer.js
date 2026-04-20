@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="container text-center text-md-left">
         <div className="row">
           <div className="col-md-4 mb-4">
-            <h5 className="text-uppercase">Equip Roots</h5>
+            <h5 className="text-uppercase">Equi Roots</h5>
             <p>
               Your trusted platform for agricultural equipment rentals. Easy, affordable, and reliable for every farmer.
             </p>
@@ -19,7 +19,7 @@ const Footer = () => {
             <h5 className="text-uppercase">Quick Links</h5>
             <ul className="list-unstyled">
               <li><a href="/about" className="text-white text-decoration-none">About Us</a></li>
-              <li><a href="/services" className="text-white text-decoration-none">Services</a></li>
+              {/* <li><a href="/services" className="text-white text-decoration-none">Services</a></li> */}
               <li><a href="/contact" className="text-white text-decoration-none">Contact</a></li>
             </ul>
           </div>
@@ -27,7 +27,7 @@ const Footer = () => {
             <h5 className="text-uppercase">Contact</h5>
             <p>📍 Village Road, Indore, India</p>
             <p>📞 +91 98765 43210</p>
-            <p>📧 support@equiproots.com</p>
+            <p>📧 support@equiroots.com</p>
             <div className="mt-3">
               <a href="https://facebook.com" className="text-white me-3 fs-5" target="_blank" rel="noreferrer">
                 <FacebookIcon/>
@@ -46,7 +46,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="text-center mt-3">
-        <p className="mb-0 text-secondary">&copy; {new Date().getFullYear()} Equip Roots. All rights reserved.</p>
+        <p className="mb-0 text-secondary">&copy; {new Date().getFullYear()} Equi Roots. All rights reserved.</p>
       </div>
     </footer>
   );

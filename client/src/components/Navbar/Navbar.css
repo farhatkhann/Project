@@ -20,63 +20,21 @@
   .cart-icon:hover {
     color: #636363;
   }
+
+  .user-account {
+    font-size: 24px;
+    color: gray;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    margin: 2px;
+  }
   
+  .user-account:hover {
+    color: #636363;
+  }
 
-/* .container {
-    height: 60px;
-    position:
-}
-
-.wrapper {
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.left {
-    flex: 1;
-    display: flex;
-    align-items: center;
-}
-
-.language {
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.logo {
-    font-weight: bold;
-}
-
-.center {
-    flex: 1;
-    align-items: center;
-    text-align: center;
-}
-
-.searchContainer {
-    border: 0.5px solid lightgray;
-    display: flex;
-    align-items: center;
-    margin-left: 25px;
-    padding: 5px;
-}
-
-.input {
-    border: none;
-    outline: none;
-}
-
-.right {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: end;
-}
-
-.menuItem {
-    font-size: 14px;
-    cursor: pointer;
-    margin-left: 25px;
-} */
+  .imageLogo{
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+  }

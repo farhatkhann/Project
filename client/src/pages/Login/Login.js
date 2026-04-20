@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './Login.css';
 const Login=()=>{ 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState('');
-
+  const navigate = useNavigate();
   const validateForm = () => {
     const newErrors = {};
     if (!email) newErrors.email = 'Email is required';
@@ -15,14 +17,34 @@ const Login=()=>{
     return newErrors;
   };
   
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
     } else {
       setErrors({});
+      setEmail('');
+      setPassword('');
       console.log('Login attempted with:', { email, password });
+      try{
+        const response = await axios.post("http://localhost:5000/api/auth/login",{
+          email,
+          password
+        },{
+          withCredentials: true,
+      });
+      console.log("response: ",response);
+        console.log("API success!");
+        const userData = response.data;
+        console.log("userData Login:",userData)
+        localStorage.setItem('user', JSON.stringify(userData));
+        console.log('User Data: ', userData);
+      }catch(err){
+        console.log(err);
+        setErrors(errors.response.data);
+      }
+      navigate('/')
     }
   };
 

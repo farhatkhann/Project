@@ -1,23 +1,38 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import {useNavigate} from 'react-router-dom';
+import axios from "axios";
 import './Register.css';
 const Register = () => {
-  const [name, setName] = useState('');
+  const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState('');
-
+  // const [inputs, setInputs] = ({
+  //   username : "",
+  //   email: "",
+  //   phone: "",
+  //   password: "",
+  // })
+  const navigate = useNavigate();
   const validateForm = () => {
     const newErrors = {};
-    if (!name) {
-      newErrors.name = 'Name is required'
+    if (!username) {
+      newErrors.username = 'Name is required'
     }
     if (!email) {
       newErrors.email = 'Email is required';
     }
     else if (!/\S+@\S+\.\S+/.test(email)) {
       newErrors.email = 'Email is invalid';
+    }
+    if (!phone) {
+      newErrors.phone = 'Phone No. is required';
+    }
+    else if (!/^\d{10}$/.test(phone)) {
+      newErrors.phone = 'Phone No. is invalid';
     }
     if (!password) {
       newErrors.password = 'Password is required';
@@ -35,6 +50,11 @@ const Register = () => {
     return newErrors;
   };
 
+  // const handleChange = (e) =>{
+  //   setInputs{(prev) => ({...prev, [e.target.name]: e.target.value})};
+  // }
+  // console.log(inputs);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const formErrors = validateForm();
@@ -42,7 +62,23 @@ const Register = () => {
       setErrors(formErrors);
     } else {
       setErrors({});
-      console.log('Register attempted with:', { name,email, password, confirmPassword });
+      setEmail('');
+      setPhone('');
+      setPassword('');
+      setConfirmPassword('');
+      console.log('Register attempted with:', { username, email, phone, password, confirmPassword });
+      try{
+        axios.post("http://localhost:5000/api/auth/register",{
+          username,
+          email,
+          phone,
+          password,
+        })
+      }catch(err){
+        console.log(err);
+        setErrors(errors.response.data);
+      }
+      navigate('/login');
     }
   };
 
@@ -58,9 +94,10 @@ const Register = () => {
                 <Form.Control
                   type="text"
                   placeholder="Enter name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  isInvalid={!!errors.name}
+                  value={username}
+                  name='username'
+                  onChange={(e) => setUserName(e.target.value)}
+                  isInvalid={!!errors.username}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.name}
@@ -72,6 +109,7 @@ const Register = () => {
                   type="email"
                   placeholder="Enter email"
                   value={email}
+                  name='email'
                   onChange={(e) => setEmail(e.target.value)}
                   isInvalid={!!errors.email}
                 />
@@ -79,13 +117,32 @@ const Register = () => {
                   {errors.email}
                 </Form.Control.Feedback>
               </Form.Group>
-
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label className='text-uppercase'>Phone</Form.Label>
+                <Form.Control
+                  type="tel"
+                  placeholder="Enter Phone No."
+                  value={phone}
+                  name='phone'
+                  maxLength={10}
+                  // onChange={(e) => setPhone(e.target.value)}
+                  isInvalid={!!errors.phone}
+                  onChange={(e) => {
+                    const cleanedValue = e.target.value.replace(/\D/g, ''); // Remove anything that's not a digit
+                    setPhone(cleanedValue);
+                  }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.phone}
+                </Form.Control.Feedback>
+              </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label className='text-uppercase'>Password</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="Enter Password"
                   value={password}
+                  name='password'
                   onChange={(e) => setPassword(e.target.value)}
                   isInvalid={!!errors.password}
                 />

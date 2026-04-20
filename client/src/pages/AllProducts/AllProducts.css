@@ -1,0 +1,30 @@
+.main-card-img {
+    width: 100%;
+    height: 250px; /* Default height */
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  @media (max-width: 768px) {
+    .card-img {
+      height: 200px; /* Smaller height for mobile */
+    }
+  }
+
+  .main-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .main-card-body {
+    flex-grow: 1; /* Ensures that the body takes up available space */
+  }
+  
+  .main-card-desc {
+    height: 220px; /* Optional: Adjust to control description size */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+  }
+  
+  
